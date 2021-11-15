@@ -17,24 +17,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnPrev, btnNext;
+        Button btnStart, btnEnd;
         final ViewFlipper viewFlipper;
 
-        btnPrev = findViewById(R.id.btnPrev);
-        btnNext = findViewById(R.id.btnNext);
+        btnStart = findViewById(R.id.btnStart);
+        btnEnd = findViewById(R.id.btnEnd);
         viewFlipper = findViewById(R.id.viewFlipper1);
 
-        btnPrev.setOnClickListener(new View.OnClickListener() {
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewFlipper.showPrevious();
+                viewFlipper.startFlipping();
+                viewFlipper.setFlipInterval(1000);
             }
         });
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        btnEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewFlipper.showNext();
+                viewFlipper.stopFlipping();
             }
         });
     }
