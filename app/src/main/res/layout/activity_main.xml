@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="여기는 서랍 밖입니다."/>
+
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:content="@+id/content"
+        android:handle="@+id/handle">
 
         <Button
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서랍 손잡이"/>
+
+        <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="버튼1"/>
+            android:layout_height="match_parent"
+            android:background="#00FF00"
+            android:gravity="center">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="버튼2"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여기는 서랍 안입니다."/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="버튼3"/>
+        </LinearLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="버튼4" />
+    </SlidingDrawer>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="버튼5"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="버튼6"/>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
