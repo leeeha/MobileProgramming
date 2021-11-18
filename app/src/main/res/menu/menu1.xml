@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/itemRed"
-        android:title="배경색 (빨강)">
-    </item>
 
     <item
-        android:id="@+id/itemGreen"
-        android:title="배경색 (초록)">
+        android:id="@+id/rotateMenu"
+        android:title="이미지 회전">
     </item>
 
-    <item
-        android:id="@+id/itemBlue"
-        android:title="배경색 (파랑)">
-    </item>
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/item1"
+            android:title="API70"
+            android:checked="false">
+        </item>
 
-    <item
-        android:title="버튼 변경 >> ">
-        <menu>
-            <item
-                android:id="@+id/subRotate"
-                android:title="버튼 45도 회전"/>
+        <item
+            android:id="@+id/item2"
+            android:title="API80"
+            android:checked="false">
+        </item>
 
-            <item
-                android:id="@+id/subSize"
-                android:title="버튼 2배 확대"/>
-        </menu>
-    </item>
+        <item
+            android:id="@+id/item3"
+            android:title="API90"
+            android:checked="false">
+        </item>
+    </group>
+
+
 </menu>
