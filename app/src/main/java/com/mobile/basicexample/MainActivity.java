@@ -1,24 +1,18 @@
 package com.mobile.basicexample;
 
-import android.content.Context;
+import android.Manifest;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOError;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,21 +20,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("raw 폴더 파일 처리");
+        setTitle("SD 카드에서 파일 읽기");
 
         Button btnRead = findViewById(R.id.btnRead);
-        final EditText edtRaw = findViewById(R.id.edtRaw);
+        final EditText edtSD = findViewById(R.id.edtSD);
 
+        // 외부 저장소에 쓰기 권한 부여
+        ActivityCompat.requestPermissions(this, new String[] {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE }, MODE_PRIVATE);
+
+        // 버튼을 클릭하면 sd_test.txt 파일 읽어서 에디트텍스트에 보여주기
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // raw_test.txt 파일 읽어서 에디트텍스트에 보여주기
-                InputStream inputS = getResources().openRawResource(R.raw.raw_test);
                 try {
-                    byte[] txt = new byte[inputS.available()];
-                    inputS.read(txt);
-                    edtRaw.setText(new String(txt));
-                    inputS.close();
+                    FileInputStream inFs = new FileInputStream("/sdcard/Ringtones/sd_test.txt");
+                    byte[] txt = new byte[inFs.available()];
+                    inFs.read(txt);
+                    edtSD.setText(new String(txt));
+                    inFs.close();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
