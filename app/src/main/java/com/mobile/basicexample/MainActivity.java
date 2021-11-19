@@ -25,15 +25,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String[] versionArray = new String[] {"마시멜로", "누가", "오레오"};
+                final boolean[] checkArray = new boolean[] {false, false, false};
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
                 dlg.setTitle("좋아하는 버전은?");
                 dlg.setIcon(R.mipmap.ic_launcher);
 
-                dlg.setItems(versionArray,
-                        new DialogInterface.OnClickListener() {
+                // 라디오 버튼으로 변경
+//                dlg.setSingleChoiceItems(versionArray, 0,
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                button1.setText(versionArray[i]);
+//                            }
+//                        });
+
+                // 체크박스로 변경
+                dlg.setMultiChoiceItems(versionArray, checkArray,
+                        new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
                                 button1.setText(versionArray[i]);
                             }
                         });
