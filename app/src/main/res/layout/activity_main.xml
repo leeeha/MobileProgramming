@@ -8,23 +8,16 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/mainEdtName"
+    <Button
+        android:id="@+id/btnWrite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:hint="사용자 이름 입력"/>
-
-    <EditText
-        android:id="@+id/mainEdtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:hint="이메일 입력"/>
+        android:text="내장 메모리에 파일 쓰기"/>
 
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnRead"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="여기를 클릭"/>
+        android:text="내장 메모리에서 파일 읽기"/>
+
 </LinearLayout>
