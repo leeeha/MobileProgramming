@@ -8,19 +8,19 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/mainEdtName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="사용자 이름"/>
+        android:hint="사용자 이름 입력"/>
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/mainEdtEmail"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="이메일"/>
+        android:hint="이메일 입력"/>
 
     <Button
         android:id="@+id/button1"
