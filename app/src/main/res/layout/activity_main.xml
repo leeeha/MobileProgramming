@@ -19,6 +19,14 @@
             android:layout_margin="4dp"
             android:text="이전 그림"/>
 
+        <TextView
+            android:id="@+id/textView"
+            android:text="1 / 5"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp" />
+
         <Button
             android:id="@+id/btnNext"
             android:layout_width="0dp"
@@ -30,6 +38,7 @@
 
     <com.mobile.basicexample.MyPictureView
         android:id="@+id/myPictureView1"
+        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
