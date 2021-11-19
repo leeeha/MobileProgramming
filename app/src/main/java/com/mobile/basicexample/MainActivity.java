@@ -1,46 +1,71 @@
 package com.mobile.basicexample;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
+    Button btnPrev, btnNext;
+    MyPictureView myPicture;
+    int curNum;
+    File[] imageFiles;
+    String imageFname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("시스템 폴더의 폴더/파일 목록 확인");
+        setTitle("간단 이미지 뷰어");
 
-        Button btnFilelist = findViewById(R.id.btnFilelist);
-        final EditText edtFilelist = findViewById(R.id.edtFilelist);
+        btnPrev = findViewById(R.id.btnPrev);
+        btnNext = findViewById(R.id.btnNext);
+        myPicture = findViewById(R.id.myPictureView1);
 
-        btnFilelist.setOnClickListener(new View.OnClickListener() {
+        imageFiles = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/Pictures").listFiles();
+
+        imageFname = imageFiles[0].toString();
+        myPicture.imagePath = imageFname;
+
+        // 이전 그림 보여주기
+        btnPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sysDir = Environment.getRootDirectory().getAbsolutePath();
-                File[] sysFiles = (new File(sysDir).listFiles());
-
-                String strFname;
-                for (int i = 0; i < sysFiles.length; i++) {
-                    if(sysFiles[i].isDirectory() == true)
-                        strFname = "<폴더> " + sysFiles[i].toString();
-                    else
-                        strFname = "<파일> " + sysFiles[i].toString();
-
-                    edtFilelist.setText(edtFilelist.getText() + "\n" + strFname);
+                if(curNum <= 0){
+                    Toast.makeText(getApplicationContext(),
+                            "첫번째 그림입니다", Toast.LENGTH_SHORT).show();
+                }else{
+                    curNum--;
+                    imageFname = imageFiles[curNum].toString();
+                    myPicture.imagePath = imageFname;
+                    myPicture.invalidate(); // 화면 갱신
                 }
             }
         });
+
+        // 다음 그림 보여주기
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(curNum >= imageFiles.length - 1){
+                    Toast.makeText(getApplicationContext(), "마지막 그림입니다",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    curNum++;
+                    imageFname = imageFiles[curNum].toString();
+                    myPicture.imagePath = imageFname;
+                    myPicture.invalidate();
+                }
+            }
+        });
+
     }
 
 }

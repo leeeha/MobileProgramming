@@ -6,15 +6,31 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnFilelist"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="시스템 폴더의 폴더/파일 목록"/>
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/edtFilelist"
-        android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="이전 그림"/>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="다음 그림"/>
+    </LinearLayout>
+
+    <com.mobile.basicexample.MyPictureView
+        android:id="@+id/myPictureView1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
