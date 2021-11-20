@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Gallery;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -18,16 +21,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("GridView로 영화 포스터 보여주기");
+        setTitle("Gallery로 영화 포스터 보여주기");
 
-        final GridView gv = findViewById(R.id.gridView1);
-        MyGridAdapter gAdapter = new MyGridAdapter(this);
-        gv.setAdapter(gAdapter);
-        // 그리드뷰에 어댑터 설정만 해주면,
-        // gAdapter 객체가 생성되면서 getView 멤버함수가 자동 호출되는 거 같다.
+        Gallery gallery = findViewById(R.id.gallery1);
+        MyGalleryAdapter galAdapter = new MyGalleryAdapter(this);
+        gallery.setAdapter(galAdapter);
+
     }
 
-    private class MyGridAdapter extends BaseAdapter {
+    private class MyGalleryAdapter extends BaseAdapter {
         Context context;
 
         Integer[] posterID = {
@@ -38,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
         };
 
         String[] movieTitle = {
-                "영화 제목1", "영화 제목2", "영화 제목3",
-                "영화 제목4", "영화 제목5", "영화 제목6",
-                "영화 제목7", "영화 제목8", "영화 제목9",
-                "영화 제목10"
+                "여인의 향기", "쥬라기 공원", "포레스트 검프",
+                "사랑의 블랙홀", "혹성탈출", "아름다운 비행",
+                "내 이름은 칸", "해리포터", "마더",
+                "킹콩을 들다"
         };
 
-        public MyGridAdapter(Context c){
+        public MyGalleryAdapter(Context c){
             context = c;
         }
 
@@ -66,42 +68,38 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
             ImageView imageView = new ImageView(context);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(200, 300));
+
+            // ViewGroup.LayoutParams(X) Gallery.LayoutParams (O)
+            imageView.setLayoutParams(new Gallery.LayoutParams(200, 300));
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setPadding(5, 5, 5, 5);
             imageView.setImageResource(posterID[position]);
 
             final int pos = position;
-
-            // 이미지를 클릭하면 다이얼로그가 뜨도록
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // dialog.xml 파일을 dialogView 변수에 인플레이트 시키기
-                    View dialogView = View.inflate(MainActivity.this,
-                            R.layout.dialog, null);
-                    /* 리스트 뷰 대신 리사이클러 뷰를 사용해야 하는 이유 알아보기!!
-                        Unconditional layout inflation from view adapter: Should use View Holder pattern
-                        (use recycled view passed into this method as the second parameter) for smoother scrolling
-                     */
-
-                    // 다이얼로그 빌더 생성
-                    AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
-
-                    // dialog.xml에 있던 이미지뷰인 ivPoster 초기화
-                    ImageView ivPoster = dialogView.findViewById(R.id.ivPoster);
+                    // 이미지 초기화
+                    ImageView ivPoster = findViewById(R.id.ivPoster);
+                    ivPoster.setScaleType(ImageView.ScaleType.FIT_CENTER);
                     ivPoster.setImageResource(posterID[pos]);
 
-                    // 다이얼로그 제목, 아이콘, 뷰, 닫기 버튼 설정
-                    dlg.setTitle(movieTitle[pos]);
-                    dlg.setIcon(R.drawable.ic_launcher_foreground);
-                    dlg.setView(dialogView);
-                    dlg.setNegativeButton("닫기", null);
-                    dlg.show();
-               }
+                    // toast.xml 레이아웃 파일을
+                    // 자바 코드 내의 toastView 객체에 인플레이트 시키기
+                    Toast toast = new Toast(getApplicationContext());
+                    View toastView = View.inflate(getApplicationContext(),
+                            R.layout.toast, null);
+
+                    // 인플레이트시킨 toastView의 텍스트 뷰 변경하고 setView로 지정
+                    TextView toastText = toastView.findViewById(R.id.movieTitle);
+                    toastText.setText(movieTitle[pos]);
+                    toast.setView(toastView);
+                    toast.show();
+                }
             });
 
-            return imageView;
+            return imageView; // NullPointerException 주의!!!!
         }
     }
 }
+

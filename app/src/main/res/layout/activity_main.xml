@@ -6,11 +6,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <GridView
-        android:id="@+id/gridView1"
+    <Gallery
+        android:id="@+id/gallery1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:numColumns="3"/>
+        android:spacing="5dp"/>
+
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"/>
 
 </LinearLayout>
