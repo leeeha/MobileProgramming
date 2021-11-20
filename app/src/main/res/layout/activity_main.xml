@@ -6,59 +6,24 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <ImageView
-            android:id="@+id/iv1"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:src="@drawable/renoir01"/>
-        <ImageView
-            android:id="@+id/iv2"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:src="@drawable/renoir02"/>
-        <ImageView
-            android:id="@+id/iv3"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:src="@drawable/renoir03" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <ImageView
-            android:id="@+id/iv4"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/renoir04"/>
-        <ImageView
-            android:id="@+id/iv5"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="200dp"
-            android:layout_margin="5dp"
-            android:src="@drawable/renoir05"/>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnResult"
+    <EditText
+        android:id="@+id/edtNum1"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="투표 종료"/>
+        android:hint="숫자1"/>
+
+    <EditText
+        android:id="@+id/edtNum2"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="숫자2"/>
+
+    <Button
+        android:id="@+id/btnNewActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="더하기"/>
 
 </LinearLayout>
