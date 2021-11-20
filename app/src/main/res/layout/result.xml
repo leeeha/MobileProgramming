@@ -7,6 +7,23 @@
 
     <TableRow>
         <TextView
+            android:id="@+id/winner"
+            android:layout_span="2"
+            android:gravity="center"
+            android:text="1등 결과"
+            android:textSize="20sp"/>
+    </TableRow>
+
+    <TableRow>
+        <ImageView
+            android:id="@+id/winnerImg"
+            android:layout_span="2"
+            android:src="@drawable/renoir01"
+            android:layout_margin="10dp"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
             android:id="@+id/tv1"
             android:layout_gravity="center_vertical"
             android:text="그림1"

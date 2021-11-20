@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -24,10 +25,12 @@ public class ResultActivity extends AppCompatActivity {
         int[] voteResult = intent.getIntArrayExtra("VoteCount");
 
         TextView tv[] = new TextView[imageName.length];
-        RatingBar rbar[] = new RatingBar[voteResult.length];
+        RatingBar rbar[] = new RatingBar[imageName.length];
 
         Integer tvID[] = {R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5 };
         Integer rbarID[] = {R.id.rbar1, R.id.rbar2, R.id.rbar3, R.id.rbar4, R.id.rbar5 };
+        Integer imgID[] = {R.drawable.renoir01, R.drawable.renoir02, R.drawable.renoir03,
+                R.drawable.renoir04, R.drawable.renoir05 };
 
         // XML 레이아웃에 선언된 뷰와 자바 코드 내의 뷰 객체 연결하기,,, 매우 번거롭다.
         // 아이디를 잘못 입력하면 NPE 발생할 수도 있다.
@@ -42,6 +45,22 @@ public class ResultActivity extends AppCompatActivity {
             tv[i].setText(imageName[i]);
             rbar[i].setRating((float)voteResult[i]);
         }
+
+        // 최대 투표 수를 가진 이미지 찾기
+        float max = rbar[0].getRating();
+        int index = 0;
+        for (int i = 0; i < rbar.length; i++) {
+            if(max < rbar[i].getRating()){
+                max = rbar[i].getRating();
+                index = i;
+            }
+        }
+
+        // 최대 투표 수를 가진 작품의 이름과 이미지 보여주기
+        TextView winner = findViewById(R.id.winner);
+        ImageView winnerImg = findViewById(R.id.winnerImg);
+        winner.setText(imageName[index]);
+        winnerImg.setImageResource(imgID[index]);
 
         // 메인 화면으로 돌아가기
         Button btnReturn = findViewById(R.id.btnReturn);
