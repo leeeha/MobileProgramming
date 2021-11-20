@@ -6,38 +6,59 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- stepSize는 몇칸씩 증감할지, 디폴트는 0.5 -->
-    <!-- rating은 초기에 채워진 양, 디폴트는 0 -->
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/renoir01"/>
+        <ImageView
+            android:id="@+id/iv2"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/renoir02"/>
+        <ImageView
+            android:id="@+id/iv3"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/renoir03" />
+    </LinearLayout>
 
-    <RatingBar
-        android:id="@+id/ratingBar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.Material.RatingBar.Small"
-        android:stepSize="1"
-        android:numStars="10"/>
-
-    <RatingBar
-        android:id="@+id/ratingBar3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:rating="1.5"
-        style="@android:style/Widget.Material.RatingBar.Indicator"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/iv4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/renoir04"/>
+        <ImageView
+            android:id="@+id/iv5"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="200dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/renoir05"/>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnInc"
+        android:id="@+id/btnResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="증가시키기"/>
-
-    <Button
-        android:id="@+id/btnDec"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="감소시키기"/>
+        android:text="투표 종료"/>
 
 </LinearLayout>
