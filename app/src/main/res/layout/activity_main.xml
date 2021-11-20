@@ -6,30 +6,38 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!-- stepSize는 몇칸씩 증감할지, 디폴트는 0.5 -->
+    <!-- rating은 초기에 채워진 양, 디폴트는 0 -->
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-        <RadioButton
-            android:id="@+id/rdoSecond"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Second 액티비티"
-            android:checked="false"/>
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Material.RatingBar.Small"
+        android:stepSize="1"
+        android:numStars="10"/>
 
-        <RadioButton
-            android:id="@+id/rdoThird"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Third 액티비티"
-            android:checked="false"/>
-
-    </RadioGroup>
+    <RatingBar
+        android:id="@+id/ratingBar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rating="1.5"
+        style="@android:style/Widget.Material.RatingBar.Indicator"/>
 
     <Button
-        android:id="@+id/btnNewActivity"
+        android:id="@+id/btnInc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="새 화면 열기"/>
+        android:text="증가시키기"/>
+
+    <Button
+        android:id="@+id/btnDec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="감소시키기"/>
 
 </LinearLayout>
