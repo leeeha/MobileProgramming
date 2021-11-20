@@ -6,22 +6,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnDial"
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="전화 걸기"/>
-
-    <Button
-        android:id="@+id/btnNewActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="투명한 액티비티 띄우기"/>
-
-    <Button
-        android:id="@+id/btnFinish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="끝내기"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
