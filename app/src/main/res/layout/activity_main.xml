@@ -13,33 +13,15 @@
         android:text="전화 걸기"/>
 
     <Button
-        android:id="@+id/btnWeb"
+        android:id="@+id/btnNewActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="홈페이지 열기"/>
+        android:text="투명한 액티비티 띄우기"/>
 
     <Button
-        android:id="@+id/btnGoogle"
+        android:id="@+id/btnFinish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="구글 맵 열기"/>
-
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="구글 검색하기"/>
-
-    <Button
-        android:id="@+id/btnSms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="문자 보내기"/>
-
-    <Button
-        android:id="@+id/btnPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="사진 찍기"/>
+        android:text="끝내기"/>
 
 </LinearLayout>
