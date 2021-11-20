@@ -6,40 +6,30 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnPrev"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <RadioButton
+            android:id="@+id/rdoSecond"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="이전 그림"/>
+            android:text="Second 액티비티"
+            android:checked="false"/>
 
-        <TextView
-            android:id="@+id/textView"
-            android:text="1 / 5"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
+        <RadioButton
+            android:id="@+id/rdoThird"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp" />
+            android:text="Third 액티비티"
+            android:checked="false"/>
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="다음 그림"/>
-    </LinearLayout>
+    </RadioGroup>
 
-    <com.mobile.basicexample.MyPictureView
-        android:id="@+id/myPictureView1"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnNewActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="새 화면 열기"/>
 
 </LinearLayout>

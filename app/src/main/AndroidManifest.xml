@@ -21,6 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 새로 만든 액티비티 등록 필수!! -->
+        <activity
+            android:name=".SecondActivity"
+            android:label="Second 액티비티"/>
+
+        <activity
+            android:name=".ThirdActivity"
+            android:label="Third 액티비티"/>
+
     </application>
 
 </manifest>
