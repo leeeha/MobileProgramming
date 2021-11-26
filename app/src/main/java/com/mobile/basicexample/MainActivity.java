@@ -160,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // SQLiteOpenHelper 클래스 상속 받아서
-    // 테이블 생성 및 삭제하기
+    // SQLiteOpenHelper 클래스 상속 받아서 테이블 생성 및 삭제하기
+    // https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper
     public static class myDBHelper extends SQLiteOpenHelper {
         public myDBHelper(Context context){
             super(context, "groupDB", null, 1);
