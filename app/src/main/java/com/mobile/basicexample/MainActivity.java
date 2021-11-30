@@ -1,140 +1,119 @@
 package com.mobile.basicexample;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BlurMaskFilter;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.EmbossMaskFilter;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity {
-    ImageButton ibZoomIn, ibZoomOut, ibRotate, ibBright, ibDark, ibGray;
-    MyGraphicView graphicView;
-    static float scaleX = 1, scaleY = 1;
-    static float angle = 0;
-    static float color = 1;
-    static float satur = 1; // 채도 saturation
+// 추상클래스 ActionBar의 인터페이스 TabListener에 있는 메소드 오버라이딩하기
+// onTabSelected, onTabUnselected, onTabReselected
+public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
+    ActionBar.Tab tabSong, tabArtist, tabAlbum;
+    MyTabFragment myFrags[] = new MyTabFragment[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("미니 포토샵");
+        setTitle("액션바 탭으로 프래그먼트 전환하기");
 
-        LinearLayout pictureLayout = findViewById(R.id.pictureLayout);
-        graphicView = new MyGraphicView(this);
-        pictureLayout.addView(graphicView);
+        // 액션바의 네비게이션 모드를 탭으로 설정
+        ActionBar bar = getSupportActionBar();
+        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        clickIcons();
+        // 액션바에 3개의 탭 생성
+        tabSong = bar.newTab();
+        tabSong.setText("음악별");
+        tabSong.setTabListener(this);
+        bar.addTab(tabSong);
 
+        tabArtist = bar.newTab();
+        tabArtist.setText("가수별");
+        tabArtist.setTabListener(this);
+        bar.addTab(tabArtist);
+
+        tabAlbum = bar.newTab();
+        tabAlbum.setText("앨범별");
+        tabAlbum.setTabListener(this);
+        bar.addTab(tabAlbum);
     }
 
-    private void clickIcons(){
-        ibZoomIn = findViewById(R.id.ibZoomIn);
-        ibZoomIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scaleX += 0.2f;
-                scaleY += 0.2f;
-                graphicView.invalidate(); // onDraw 함수 다시 호출
-            }
-        });
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+        MyTabFragment myTabFrag;
 
-        ibZoomOut = findViewById(R.id.ibZoomOut);
-        ibZoomOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scaleX -= 0.2f;
-                scaleY -= 0.2f;
-                graphicView.invalidate();
-            }
-        });
+        // 처음 선택된 탭이면 프래그먼트 생성 후,
+        // 선택된 탭 이름을 담고 있는 번들 객체를 인자로 전달하기
+        if(myFrags[tab.getPosition()] == null){
+            myTabFrag = new MyTabFragment();
 
-        ibRotate = findViewById(R.id.ibRotate);
-        ibRotate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                angle -= 20; // 반시계 방향으로 회전
-                graphicView.invalidate();
-            }
-        });
+            Bundle data = new Bundle();
+            data.putString("tabName", tab.getText().toString());
+            myTabFrag.setArguments(data);
 
-        ibBright = findViewById(R.id.ibBright);
-        ibBright.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                color += 0.2f;
-                graphicView.invalidate();
-            }
-        });
-
-        ibDark = findViewById(R.id.ibDark);
-        ibDark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                color -= 0.2f;
-                graphicView.invalidate();
-            }
-        });
-
-        ibGray = findViewById(R.id.ibGray);
-        ibGray.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                satur = (satur == 0) ? 1 : 0; // 채도 반전
-                graphicView.invalidate();
-            }
-        });
-    }
-
-    private static class MyGraphicView extends View {
-
-        public MyGraphicView(Context context){
-            super(context);
+            myFrags[tab.getPosition()] = myTabFrag;
+        }
+        else{ // 선택된 탭으로 업데이트
+            myTabFrag = myFrags[tab.getPosition()];
         }
 
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
+        // 기존의 프래그먼트를 새로 선택된 프래그먼트로 교체하기
+        ft.replace(android.R.id.content, myTabFrag);
+    }
 
-            int cenX = this.getWidth() / 2;
-            int cenY = this.getHeight() / 2;
-            canvas.scale(scaleX, scaleY, cenX, cenY); // 크기 설정
-            canvas.rotate(angle, cenX, cenY); // 각도 설정
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
-            Paint paint = new Paint();
+    }
 
-            // 컬러 매트릭스로 이미지의 밝기, 채도 설정
-            float[] array = {
-                    color, 0, 0, 0, 0, // red vector
-                    0, color, 0, 0, 0, // green vector
-                    0, 0, color, 0, 0, // blue vector
-                    0, 0, 0, 1, 0, // alpha vector
-            };
-            ColorMatrix cm = new ColorMatrix(array);
-            if(satur == 0){
-                cm.setSaturation(satur); // 채도 설정
-            }
-            paint.setColorFilter(new ColorMatrixColorFilter(cm));
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
-            Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.renoir01);
-            int picX = (this.getWidth() - picture.getWidth()) / 2;
-            int picY = (this.getHeight() - picture.getHeight()) / 2;
-            canvas.drawBitmap(picture, picX, picY, paint);
+    }
 
-            picture.recycle();
+    public static class MyTabFragment extends Fragment {
+        String tabName;
+
+        @Override // 프래그먼트 생성 후, 선택된 탭 이름 번들에서 꺼내기
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            Bundle data = getArguments();
+            tabName = data.getString("tabName");
+        }
+
+        @Override // 선택된 탭에 따라 레이아웃 색상 다르게 해서 리턴
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+            // XML 없이 자바 코드에서 리니어 레이아웃 생성
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+            LinearLayout baseLayout = new LinearLayout(super.getActivity());
+            baseLayout.setOrientation(LinearLayout.VERTICAL);
+            baseLayout.setLayoutParams(params);
+
+            if(tabName == "음악별")
+                baseLayout.setBackgroundColor(Color.RED);
+            else if(tabName == "가수별")
+                baseLayout.setBackgroundColor(Color.GREEN);
+            else if(tabName == "앨범별")
+                baseLayout.setBackgroundColor(Color.BLUE);
+
+            return baseLayout;
         }
     }
+
+
+
+
 }
 
