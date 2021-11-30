@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
             Paint paint = new Paint();
 
-            // 블러 마스크 필터: NORMAL, INNER, OUTER, SOLID
+            // 블러링 효과
+            // BlurMaskFilter(반지름, 스타일)
+            // 블러 종류: NORMAL, INNER, OUTER, SOLID
             BlurMaskFilter bMask = new BlurMaskFilter(30, BlurMaskFilter.Blur.NORMAL);
             paint.setMaskFilter(bMask);
 
