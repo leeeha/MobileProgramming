@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.EmbossMaskFilter;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new MyGraphicView(this));
-        setTitle("비트맵 다루기");
+        setTitle("엠보싱 효과");
     }
 
 
@@ -31,23 +33,17 @@ public class MainActivity extends AppCompatActivity {
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
 
-            // /res/drawable 폴더에서 이미지 파일 가져오는 경우
-            Bitmap picture = BitmapFactory.decodeResource(getResources(),
-                    R.drawable.renoir01);
-
-            int picX = (this.getWidth() - picture.getWidth()) / 2;
-            int picY = (this.getHeight() - picture.getHeight()) / 2;
+            int cenX = this.getWidth() / 2;
+            int cenY = this.getHeight() / 2;
 
             Paint paint = new Paint();
+            paint.setColor(Color.GRAY);
 
-            // 블러링 효과
-            // BlurMaskFilter(반지름, 스타일)
-            // 블러 종류: NORMAL, INNER, OUTER, SOLID
-            BlurMaskFilter bMask = new BlurMaskFilter(30, BlurMaskFilter.Blur.NORMAL);
-            paint.setMaskFilter(bMask);
-
-            canvas.drawBitmap(picture, picX, picY, paint);
-            picture.recycle();
+            // EmbossMaskFilter(빛의 xyz 방향, 빛의 밝기, 반사 계수, 블러링 크기);
+            EmbossMaskFilter eMask =
+                    new EmbossMaskFilter(new float[] {3, 10, 3}, 0.5f, 5, 10);
+            paint.setMaskFilter(eMask);
+            canvas.drawCircle(cenX, cenY, 150, paint);
         }
     }
 }
