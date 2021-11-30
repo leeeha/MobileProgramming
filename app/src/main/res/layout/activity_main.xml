@@ -4,43 +4,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/resultTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="결과"/>
+    <LinearLayout
+        android:id="@+id/iconLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/normalButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Normal Button"/>
+        <ImageButton
+            android:id="@+id/ibZoomIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zoom_in"/>
 
-    <Button
-        android:id="@+id/errorButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Error Button1"/>
+        <ImageButton
+            android:id="@+id/ibZoomOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zoom_out"/>
 
-    <Button
-        android:id="@+id/errorButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Error Button2"/>
+        <ImageButton
+            android:id="@+id/ibRotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rotate"/>
 
-    <Button
-        android:id="@+id/postButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post Button"/>
+        <ImageButton
+            android:id="@+id/ibBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bright"/>
 
-    <Button
-        android:id="@+id/messageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message Button"/>
+        <ImageButton
+            android:id="@+id/ibDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dark"/>
+
+        <ImageButton
+            android:id="@+id/ibGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pictureLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:gravity="center"
+        android:orientation="horizontal">
+    </LinearLayout>
 
 </LinearLayout>
+
