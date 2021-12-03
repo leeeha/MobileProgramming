@@ -15,7 +15,6 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
     private ViewPager viewPager;
     private CustomPagerAdapter pagerAdapter;
 
