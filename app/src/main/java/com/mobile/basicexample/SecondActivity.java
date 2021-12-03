@@ -1,6 +1,5 @@
 package com.mobile.basicexample;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second);
+        setContentView(R.layout.activity_second);
 
         Button btnReturn = findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(new View.OnClickListener() {
